@@ -1,0 +1,13 @@
+{
+    "name": "coffre fort",
+    "description": "outil coffre fort electronique ",
+    "minimum-stability" : "dev",
+    "require": {
+        "php": ">=5.4",
+         "smarty/smarty": "~3.1"
+    },
+    "require-dev": {
+    },
+    "repositories": [
+    ]
+}

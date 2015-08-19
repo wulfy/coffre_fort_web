@@ -1,0 +1,13 @@
+.logo{
+width:50px;
+}
+
+ul { 
+list-style-type: none; 
+}
+
+#logs{
+	width:400px !important;
+	height: 400px !important;
+	font-size: 10px;
+}
