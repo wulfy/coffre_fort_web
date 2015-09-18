@@ -11,8 +11,8 @@ var startDateIdentifier = "date=";
 var endDateIdentifier = "&origin";
 var folder = baseFolder+"/"+'Orange';
 var formSelect = 'form[id="AuthentForm"]';
-var login = 'ludovic.lasry@wanadoo.fr';
-var password = '.Sacdoss69';
+var login = '';
+var password = '';
 
 //open website and click on link to login page
 /*casper.thenOpen(url, function openWebsite() {

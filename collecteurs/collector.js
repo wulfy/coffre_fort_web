@@ -32,7 +32,7 @@ var casper = require('casper').create({
 });
 
 function capture(collectorname,screenname){
-	casper.capture("/data/screens/"+collectorname+"/"+screenname)
+	casper.capture("/data/screens/"+collectorname+"/"+screenname);
 }	
 
 var collectors = ['Aviva','Orange','Gdfsuez','Edf'];

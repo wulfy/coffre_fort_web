@@ -42,8 +42,8 @@ casper.then(function() {
 });*/
 casper.then(function() {
 		 this.fill(formSelect, {
-        'portlet_login_simple_5{pageFlow.mForm.login}':    'ludovic.lasry@gmail.com',
-        'portlet_login_simple_5{pageFlow.mForm.password}':    '.Kendjiin69'
+        'portlet_login_simple_5{pageFlow.mForm.login}':    '',
+        'portlet_login_simple_5{pageFlow.mForm.password}':    ''
     }, true);
 
 
