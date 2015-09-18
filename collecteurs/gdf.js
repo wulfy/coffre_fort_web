@@ -42,8 +42,8 @@ casper.then(function() {
 });*/
 casper.then(function() {
 		 this.fill(formSelect, {
-        'portlet_login_simple_5{pageFlow.mForm.login}':    '',
-        'portlet_login_simple_5{pageFlow.mForm.password}':    ''
+        'portlet_login_simple_5{pageFlow.mForm.login}':    login,
+        'portlet_login_simple_5{pageFlow.mForm.password}':    password
     }, true);
 
 
@@ -53,6 +53,8 @@ casper.then(function() {
         width: 1024,
         height: 1024
     });
+
+    this.echo("login ok");
     
 });
 

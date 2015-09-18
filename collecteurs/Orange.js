@@ -55,7 +55,7 @@ casper.then(function openFilesPage() {
 					this.click('.maf_valider_enabled');
 					this.echo("contrat Internet selectionne");
 			}, null, 3000);
-		//this.wait(2000);
+		this.wait(2000);
 
 		if(debug)
 			this.echo("suite");
