@@ -22,7 +22,7 @@ casper.thenOpen(urlConnexion, function openWebsite() {
         'email' :    login,
 		'motdepasse' : password,
     }, false);
-    
+    capture(collector,'login.png');
 });
 
 casper.then(function logIn() {
