@@ -1,0 +1,4 @@
+AuthName "Page sécurisée, veuillez vous identifier"
+AuthType Basic
+AuthUserFile "/var/www/html/.htpasswd"
+Require valid-user

@@ -28,6 +28,9 @@ casper.thenOpen(urlConnexion, function openWebsite() {
 casper.then(function logIn() {
 this.echo("Login");
 		this.click('a#a_login_bouton_mode_non_connecte');
+		this.click('#a_login_bouton_mode_non_connecte');
+		this.click('.btn-action');
+		this.wait(3000);
 });
 
 var badwords = ["\t","</td>","\n","  ",">"];
