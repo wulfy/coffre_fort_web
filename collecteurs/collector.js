@@ -7,7 +7,7 @@
 
 var casper = require('casper').create({   
     verbose: true, 
-	logLevel: "warning",
+	logLevel: "debug",
     pageSettings: {
          loadImages:  true,         // The WebPage instance used by Casper will
          loadPlugins: true,        // use these settings
@@ -19,7 +19,7 @@ var casper = require('casper').create({
     },
     onWaitTimeout: function() {
         //logConsole('Wait TimeOut Occured');
-        casper.capture('/data/screens/xWait_timeout.png');
+        casper.capture('./data/screens/xWait_timeout.png');
         casper.echo("wait timeout");
         casper.exit();
     },
@@ -39,7 +39,7 @@ function capture(collectorname,screenname){
 
 var collectors = ['Aviva','Orange','Gdfsuez','Edf'];
 //var baseFolder = '../docs';
-var baseFolder = '/data/docs';
+var baseFolder = './data/docs';
 var fullPath = "";
 var collectorsPath = "";
 var fs = require('fs');
