@@ -14,7 +14,7 @@ casper.thenOpen(urlFactures, function openWebsite() {
 	casper.waitForSelector('.login-anonymous', function(){
 
 		capture(collector,'edf1.png');
-		this.echo("connexion");
+		mylog("connexion");
 		//this.click('.isAnonymous');
 		//this.wait(1000);
 		capture(collector,'openform.png');
@@ -32,20 +32,20 @@ casper.thenOpen(urlFactures, function openWebsite() {
 
 casper.then(function logIn() {
 
-	this.echo("Login");
+	mylog("Login");
 
 	this.waitForSelector('.login_connectButton', function(){
 		capture(collector,'login1.png');
 		//this.clickLabel("Me connecter","div");
 		this.click(".login_connectButton");
 		capture(collector,'login.png');
-		this.echo("clicked");
+		mylog("clicked");
 	},null,15000);
 
-	this.waitForSelector('.num-contrat', function(){
-		this.echo("loginok");
+	this.waitForSelector('.isAuthentified.show', function(){
+		mylog("loginok");
 		capture(collector,'loginok.png');
-	},null,15000);
+	},null,20000);
 
 
 });
@@ -53,39 +53,45 @@ casper.then(function logIn() {
 var badwords = ["\t","</td>","\n","  ",">"];
 var i=-1;
 
-casper.thenOpen(urlFactures,function openFileList() {
+casper.thenOpen("https://particulier.edf.fr/fr/accueil/espace-client/tableau-de-bord.html",function () {
+	this.wait(5000);
+capture(collector,'test-log.png');
+});
+
+casper.then(function openFileList() {
 capture(collector,'openfactures.png');
-this.echo("URL Factures");
-	casper.waitForSelector('.factures', function(){
+mylog("URL Factures");
+	//casper.waitForSelector('.factures', function(){
 capture(collector,'factures.png');
-	var urlZip = "https://monagencepart.edf.fr/ASPFront/appmanager/ASPFront/front?_nfls=false&_nfpb=true&_pageLabel=private/page_mes_factures&zip=1";
+
+	var urlZip = "https://monagencepart.edf.fr/ASPFront/com/edf/asp/portlets/historiquefactures/telechargerZip.do";
 		this.download(urlZip, folder+'/'+"Edf-factures.zip");
 
-		this.echo("unziping");
+		mylog("unziping");
 		var childProcess;
 	  try {
 	    childProcess = require("child_process");
 	  } catch (e) {
-	    this.echo(e + " error");
+	    mylog(e + " error");
 	  }
 	  if (childProcess) {
-	  	this.echo("processing : " + " unzip "+folder+'/'+"Edf-factures.zip -d "+folder);
-	    childProcess.execFile("/usr/bin/unzip", [folder+'/'+"Edf-factures.zip","-d",folder], null, function (err, stdout, stderr) {
-	      this.echo("execFileSTDOUT:"+ JSON.stringify(stdout)+ ' debug');
-	      this.echo("execFileSTDERR:"+ JSON.stringify(stderr)+ ' debug');
+	  	mylog("processing : " + " unzip "+folder+'/'+"Edf-factures.zip -d "+folder);
+	    childProcess.execFile("/usr/bin/unzip", [folder+'/'+"Edf-factures.zip","-d",folder], function (err, stdout, stderr) {
+	      mylog("execFileSTDOUT:"+ JSON.stringify(stdout)+ ' debug');
+	      mylog("execFileSTDERR:"+ JSON.stringify(stderr)+ ' debug');
 	    });
 	    childProcess.execFile("chmod", ["744",folder+'/*'], null, function (err, stdout, stderr) {
-	      this.echo("execFileSTDOUT:"+ JSON.stringify(stdout)+ ' debug');
-	      this.echo("execFileSTDERR:"+ JSON.stringify(stderr)+ ' debug');
+	      mylog("execFileSTDOUT:"+ JSON.stringify(stdout)+ ' debug');
+	      mylog("execFileSTDERR:"+ JSON.stringify(stderr)+ ' debug');
 	    });
-	    this.echo("Done");
+	    mylog("Done");
 	  } else {
-	    this.echo("Unable to require child process, warning");
+	    mylog("Unable to require child process, warning");
 	  }
 
 	
 	
-	},null,5000);
+	//},null,5000);
 	
 });
 /*

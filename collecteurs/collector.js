@@ -7,7 +7,7 @@
 
 var casper = require('casper').create({   
     verbose: true, 
-	/*logLevel: logLvl,*/
+	logLevel: "warning",
     pageSettings: {
          loadImages:  true,         // The WebPage instance used by Casper will
          loadPlugins: true,        // use these settings
@@ -19,20 +19,22 @@ var casper = require('casper').create({
     },
     onWaitTimeout: function() {
         //logConsole('Wait TimeOut Occured');
-        this.capture('/data/screens/xWait_timeout.png');
-        this.echo("wait timeout");
-        this.exit();
+        casper.capture('/data/screens/xWait_timeout.png');
+        casper.echo("wait timeout");
+        casper.exit();
     },
     onStepTimeout: function() {
         //logConsole('Step TimeOut Occured');
-        this.echo("step timeout");
-        this.capture('xStepTimeout.png');
-        this.exit();
+        casper.echo("step timeout");
+        casper.capture('xStepTimeout.png');
+        casper.exit();
     }
 });
 
 function capture(collectorname,screenname){
-	casper.capture("/data/screens/"+collectorname+"/"+screenname);
+	if(debug)
+		casper.echo("capturing " + screenname);
+	casper.capture("./data/screens/"+collectorname+"/"+screenname);
 }	
 
 var collectors = ['Aviva','Orange','Gdfsuez','Edf'];
@@ -67,7 +69,7 @@ phantom.injectJs(collectorsPath+'utils.js');
 /********************************************/
 
 var logLvl = "";
-var debug=false;
+var debug=true;
 
 if(casper.cli.has("log-level"))
 	logLvl = casper.cli.get("log-level");
@@ -82,8 +84,10 @@ var collector = casper.cli.get("collector");
 
 var fs = require('fs')
 var jsondata = fs.read(collectorsPath+'config.json');
+
 //var json = require('collector.json');
 var json = JSON.parse(jsondata);
+
 //require('utils').dump(json);
 
 if (typeof collector != 'undefined' && null !=collector)
@@ -98,6 +102,11 @@ if (typeof collector != 'undefined' && null !=collector)
 	casper.echo('RUNNING ALL COLLECTORS-----------------------');
 }
 
+function mylog(log){
+	if (debug) {
+		casper.echo(log);
+	};
+}
 
 function runCollectors (index){
 	if(index<collectors.length)
