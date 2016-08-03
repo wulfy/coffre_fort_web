@@ -34,7 +34,7 @@ mylog("Login");
 			capture(collector,"Login_ok.png");
 		},function timeout(){
 			capture(collector,"Login_nok.png");
-		},30000);
+		},15000);
 
 });
 
