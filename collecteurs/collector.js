@@ -7,7 +7,7 @@
 
 var casper = require('casper').create({   
     verbose: true, 
-	logLevel: "debug",
+	logLevel: "warning",
     pageSettings: {
          loadImages:  true,         // The WebPage instance used by Casper will
          loadPlugins: true,        // use these settings
@@ -39,7 +39,7 @@ function capture(collectorname,screenname){
 
 var collectors = ['Aviva','Orange','Gdfsuez','Edf'];
 //var baseFolder = '../docs';
-var baseFolder = './data/docs';
+var baseFolder = '/data/docs';
 var fullPath = "";
 var collectorsPath = "";
 var fs = require('fs');
