@@ -5,6 +5,7 @@ var links = [];
 var filePrefix = "Orange-Internet_";
 var url = 'http://www.orange.fr/portail';
 var url1 = 'https://authweb.orange.fr/auth_user/bin/auth_user.cgi';
+var loginform = 'https://id.orange.fr/auth_user/bin/auth_user.cgi?service=nextecare&return_url=https%3A%2F%2Fespaceclientv3.orange.fr%2Fmaf.php%3FurlOk%3Dhttps%25253A%25252F%25252Fm.espaceclientv3.orange.fr%25252F%25253Fpage%25253Dfactures-archives%26applicationUnivers%3Dn%2Fa%26sectionId%3DNEC-FPC-HISTORIQUE%26cd%3DU%26idContrat%3D%26lineNumber%3D%26bodyLineNumber%3D';
 var urlfacture = "https://m.espaceclientv3.orange.fr/maf.php?urlOk=https%3A%2F%2Fm.espaceclientv3.orange.fr%2F%3Fpage%3Dfactures-archives&applicationUnivers=n/a&sectionId=NEC-FPC-HISTORIQUE&cd=U&idContrat=&lineNumber=&bodyLineNumber=";
 var startDateIdentifier = "date=";
 var endDateIdentifier = "&origin";
@@ -23,16 +24,16 @@ casper.thenOpen(url, function openWebsite() {
 		autologged = true;
 	}, function timeout(){
 		casper.echo("NEED LOGIN");
-		mouse.click('.btn-ident.o_r_identifier'); 
-	},2000);
+		//mouse.click('.btn-ident.o_r_identifier'); 
+	},10000);
 	
 	
 });
 
 
 //fill form of login page
-
-casper.then(function fillForm() {
+if(!autologged)
+casper.thenOpen(loginform, function fillForm() {
 capture(collector,'form.png');
 this.echo("fillForm");
 	this.waitForSelector(formSelect, function (){
@@ -60,16 +61,17 @@ this.echo("fillForm");
 
 casper.echo("factures");
 //open data oage
-casper.thenOpen(urlfacture, function openWebsite() {
+/*casper.thenOpen(urlfacture, function openWebsite() {
 			if(debug)
 				casper.echo("factures opened");
-});
+});*/
 
 
 //select contract (sosh/internet)
 casper.then(function openFilesPage() {
-		casper.waitForSelector('input[id="32820313"]', function() {
-					this.click('input[id="32820313"]');
+	capture(collector,'factures.png');
+		casper.waitForSelector('input[id="9037277644"]', function() {
+					this.click('input[id="9037277644"]');
 					this.click('.maf_valider_enabled');
 					casper.echo("contrat Internet selectionne");
 			}, null, 3000);
@@ -90,7 +92,7 @@ casper.then(function dlFilesPage() {
 		filename = facturesDate[i].text;
 		url = factureUrl.attributes.href;
 		filename = formatDate(filename);
-		//casper.echo(url + " O->" + folder+'/'+filePrefix+filename+".pdf");
+		casper.echo(url + " O->" + folder+'/'+filePrefix+filename+".pdf");
 		this.download(url, folder+'/'+filePrefix+filename+".pdf");
 		i++;
 		
@@ -110,8 +112,8 @@ casper.thenOpen(urlfacture, function openSoshWebsite() {
 
 //select contract (sosh/internet)
 casper.then(function openSoshFilesPage() {
-		casper.waitForSelector('input[id="24195956"]', function() {
-					this.click('input[id="24195956"]');
+		casper.waitForSelector('input[id="9002210886"]', function() {
+					this.click('input[id="9002210886"]');
 					this.click('.maf_valider_enabled');
 					casper.echo("contrat sosh selectionne");
 			},null,3000);
@@ -123,6 +125,7 @@ casper.then(function openSoshFilesPage() {
 
 //download data
 casper.then(function dlSoshFilesPage() {
+	capture(collector,'sosh.png');
 	var soshfacturesUrl = this.getElementsInfo('ul.factures .telecharger a');
 	var soshfacturesDate = this.getElementsInfo('ul.factures li span.date');
 	var filename = "";
