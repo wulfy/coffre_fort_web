@@ -33,11 +33,12 @@ if(isset($_GET["debug"]) && !empty($_GET["debug"]))
 $options = "";
 foreach($optionsList as $option)
 	$options .= " ".$option;
-echo "in";
+
 $command = './launcher.sh '.$collector.' > /dev/null &';
 if($collector != null)
 {
-	echo exec($command);
+	echo $command;
+	exec($command);
 }else
 {
 	$command .= ' --collector=Aviva';
