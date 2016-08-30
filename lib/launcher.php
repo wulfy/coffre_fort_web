@@ -37,7 +37,6 @@ foreach($optionsList as $option)
 $command = './launcher.sh '.$collector.' > /dev/null &';
 if($collector != null)
 {
-	echo $command;
 	exec($command);
 }else
 {
