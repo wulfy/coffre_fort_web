@@ -75,18 +75,18 @@
 <body ng-controller="FacturesListCtrl">
 
   <div class="container-fluid">
-    <div class="row-fluid">
-      <div class="span2">
+    <div class="row">
+      <div class="col-md-2">
         <!--Sidebar content-->
-		<a href='#' onclick="refresh(this)">Mettre a jour</a>
-        Search: <input ng-model="query">
+		
+        Search: <input ng-model="query"><br/>
         Sort by:
         <select ng-model="orderProp">
           <option value="url" ng-selected="reverse=true">Alphabetical</option>
           <option value="timestamp" ng-selected="reverse=true">Newest</option>
         </select>
       </div>
-      <div class="span5">
+      <div class="col-md-6">
         <!--Body content-->
 		<div ng-repeat="directory in directories | filter:query">
 		<div id='{{directory.directoryName}}' > <a href='#' ng-click="refreshData($event)">{{directory.directoryName}}</a> 
@@ -99,7 +99,7 @@
         </ul>
 		</div>
       </div>
-      <div class="span2">
+      <div class="col-md-4">
       	<textarea id='logs'>
         </textarea>
       </div>

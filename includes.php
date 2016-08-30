@@ -45,7 +45,7 @@ foreach($directories as $directoryName => $files)
 	{
 		$filesData[$index]["name"]=$fileName;
 		$filesData[$index]["type"]="pdf";
-		$filesData[$index]["url"]= $files_dir."/".$directoryName."/".$fileName;
+		$filesData[$index]["url"]= $rootdir."/".$directoryName."/".$fileName;
 		$filesData[$index]["img"]="http://www.sft-congres.fr/Images/Public//PAGE__17__122013--347-1.gif";
 		
 		preg_match("/(0[1-9]|[12][0-9]|3[01])[_](0[1-9]|1[012])[_](19|20)\d\d/", $fileName, $matches);
