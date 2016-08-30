@@ -37,7 +37,7 @@ foreach($optionsList as $option)
 $command = './launcher.sh '.$collector.' > /dev/null &';
 if($collector != null)
 {
-	exec($command);
+	echo exec($command);
 }else
 {
 	$command .= ' --collector=Aviva';
