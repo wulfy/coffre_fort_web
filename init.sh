@@ -1,10 +1,10 @@
 #!/bin/bash
 # command.sh
 
-mkdir /data/docs/Orange
-mkdir /data/docs/Aviva
-mkdir /data/docs/Gdfsuez
-mkdir /data/docs/Sosh
-mkdir /data/docs/Edf
-ln -s /data/docs/ ../docs
-ln -s /data/logs/ ../logs
+mkdir -p /data/docs/Orange
+mkdir -p /data/docs/Aviva
+mkdir -p /data/docs/Gdfsuez
+mkdir -p /data/docs/Sosh
+mkdir -p /data/docs/Edf
+mkdir -p /data/screens
+mkdir -p /data/logs
