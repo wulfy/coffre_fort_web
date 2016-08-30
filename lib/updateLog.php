@@ -7,4 +7,4 @@ function clean($string) {
 
 $collector = clean($_GET["collector"]);
 
-readfile("../logs/".$collector.".log");
+readfile("/data/logs/".$collector.".log");
