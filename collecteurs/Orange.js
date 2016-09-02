@@ -9,7 +9,7 @@ var loginform = 'https://id.orange.fr/auth_user/bin/auth_user.cgi?service=nextec
 var urlfacture = "https://m.espaceclientv3.orange.fr/maf.php?urlOk=https%3A%2F%2Fm.espaceclientv3.orange.fr%2F%3Fpage%3Dfactures-archives&applicationUnivers=n/a&sectionId=NEC-FPC-HISTORIQUE&cd=U&idContrat=&lineNumber=&bodyLineNumber=";
 var startDateIdentifier = "date=";
 var endDateIdentifier = "&origin";
-var folder = baseFolder+"/"+'Orange';
+var folder = files_path+"/"+'Orange';
 var formSelect = 'form[id="AuthentForm"]';
 var waitTimeout = 1000;
 var autologged = false;
@@ -101,7 +101,7 @@ casper.then(function dlFilesPage() {
 });
 
 //switch to sosh
-var soshfolder = baseFolder+"/"+'Sosh';
+var soshfolder = files_path+"/"+'Sosh';
 var soshfilePrefix = "Sosh_";
 casper.thenOpen(urlfacture, function openSoshWebsite() {
 			if(debug)

@@ -12,7 +12,7 @@ var formId = 'stopanim';
 var emailId ='get_email';
 var passwordId = 'get_password';
 var formSelect = 'form[name="formConnexion"]';
-var folder = baseFolder+"/"+"Gdfsuez";
+var folder = files_path+"/"+"Gdfsuez";
 
 casper.thenOpen(urlConnexion, function openWebsite() {
 

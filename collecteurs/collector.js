@@ -31,11 +31,7 @@ var casper = require('casper').create({
     }
 });
 
-function capture(collectorname,screenname){
-	if(debug)
-		casper.echo("capturing " + screenname);
-	casper.capture("/data/screens/"+collectorname+"/"+screenname);
-}	
+
 
 var collectors = ['Aviva','Orange','Gdfsuez','Edf'];
 //var baseFolder = '../docs';
@@ -77,16 +73,31 @@ if(casper.cli.has("log-level"))
 //if(stristr(logLvl,'debug'))
 //	debug = true;
 
-casper.echo('CURFILEPATH :' + curFilePath);	
-casper.echo('CONFIG BASEFOLDER :' + baseFolder);
-casper.echo('CONFIG COLLECTORS PATH :' + collectorsPath);
-var collector = casper.cli.get("collector");
 
+var collector = casper.cli.get("collector");
+casper.echo(collectorsPath+'config.json');
 var fs = require('fs')
 var jsondata = fs.read(collectorsPath+'config.json');
+var json = JSON.parse(jsondata);
+
+var root_dir = "../"+json.root_dir;
+var files_path = root_dir+"/"+json.files_dir;
+var logs_paths = root_dir+"/"+json.logs_dir;
+var screens_paths = root_dir+"/"+json.screens_dir;
+
+casper.echo('ROOT PATH :' + root_dir);	
+casper.echo('FILES DIR :' + files_path);
+casper.echo('LOGS DIR :' + logs_paths);
+casper.echo('SCREENS DIR :' + screens_paths);
+
+function capture(collectorname,screenname){
+	if(debug)
+		casper.echo("capturing " + screenname);
+	casper.capture(screens_paths+"/"+collectorname+"/"+screenname);
+}	
 
 //var json = require('collector.json');
-var json = JSON.parse(jsondata);
+
 
 //require('utils').dump(json);
 

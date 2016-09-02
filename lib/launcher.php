@@ -1,11 +1,7 @@
 <?php
 
+require_once('includes.php');
 
-function clean($string) {
-   $string = str_replace(' ', '-', $string); // Replaces all spaces with hyphens.
-
-   return preg_replace('/[^A-Za-z0-9\-]/', '', $string); // Removes special chars.
-}
 
 $collectorCommand = "";
 $collector = null;
@@ -35,9 +31,27 @@ foreach($optionsList as $option)
 	$options .= " ".$option;
 
 $command = './launcher.sh '.$collector.' > /dev/null &';
+$config = getJsonConfig();
+$logfilename = $collector.".log";
 if($collector != null)
 {
-	exec($command);
+	$log_path = PROJECT_PATH.'/'.$config['root_dir']."/".$config['logs_dir'];
+
+	//re-generate log each time
+	$create_file = 'touch '.$log_path.'/'.$logfilename;
+	$give_access = 'chmod 777 '.$log_path.'/'.$logfilename;
+
+	//call casper command
+	$casperjs_command = 'casperjs --ssl-protocol=any --ignore-ssl-errors=yes --web-security=no ../collecteurs/collector.js --collector='.$collector.' > '.$log_path.'/'.$logfilename;
+	//#casperjs --ssl-protocol=any --ignore-ssl-errors=yes ./collecteurs/collector.js --collector=$1 > logs/$1.log 
+	//end of job notification for Angular
+	$end_of_job = 'echo "#END#" >> '.$log_path.'/'.$logfilename;
+	
+	echo exec($create_file);
+	echo exec($give_access);
+	echo $casperjs_command;
+	echo exec($casperjs_command);
+	echo exec($end_of_job);
 }else
 {
 	$command .= ' --collector=Aviva';

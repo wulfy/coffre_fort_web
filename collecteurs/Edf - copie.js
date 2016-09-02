@@ -4,7 +4,6 @@
 
 var links = [];
 					https://monagencepart.edf.fr/ASPFront/appmanager/ASPFront/front?_nfpb=true&_pageLabel=page_mes_factures&_nfls=false&numAcc=004017921734&portletInstance2=portlet_suivi_consommation_2&origine=acces_secondaire&accord=004017921734&page_redirect=page_mes_factures&service=page_mes_factures&service=page_mes_factures&redirect=true&privee=true
-var urlFactures = 'https://monagencepart.edf.fr/ASPFront/appmanager/ASPFront/front?_nfls=false&origine=acces_secondaire&privee=true&_pageLabel=page_mes_factures&accord=004017921734&_nfpb=true&numAcc=004017921734&portletInstance2=portlet_suivi_consommation_2&page_redirect=page_mes_factures&service=page_mes_factures';
 var urlSite = "https://particulier.edf.fr/fr/accueil.html";
 var urlConnect = "https://particulier.edf.fr/fr/accueil/connexion/mon-espace-client.html";
 var urlTableauDeBord = "https://particulier.edf.fr/fr/accueil/espace-client/tableau-de-bord.html";

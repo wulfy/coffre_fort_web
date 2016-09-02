@@ -1,0 +1,17 @@
+{
+    "collectors": ["Aviva","Gdfsuez"],
+    "passwords":{
+    	"Aviva":{
+    		"login" : "",
+    		"password" : ["",""]
+    	},
+    	"Gdfsuez":{
+    		"login" : "",
+    		"password" : "."
+    	}
+    },
+    "root_dir":"data",
+    "files_dir":"docs",
+    "logs_dir":"logs",
+    "screens_dir":"screens"
+}
