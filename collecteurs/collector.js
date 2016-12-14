@@ -33,7 +33,7 @@ var casper = require('casper').create({
 
 
 
-var collectors = ['Aviva','Orange','Gdfsuez','Edf'];
+var collectors = ['Aviva','Orange','Gdfsuez','Edf','Sosh'];
 //var baseFolder = '../docs';
 var baseFolder = '/data/docs';
 var fullPath = "";
@@ -57,6 +57,7 @@ if(casper.cli.has("collector"))
 {
 	if(collectors.indexOf(casper.cli.get("collector")) > -1)
 		collectors = [''+casper.cli.get("collector")]
+
 }
 /**************************************
 	include libraries
