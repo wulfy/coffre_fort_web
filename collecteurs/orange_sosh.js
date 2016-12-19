@@ -19,13 +19,14 @@ casper.echo("starting");
 casper.thenOpen(url, function openWebsite() {
 	//capture(collector,'start.png');
 
-	this.waitForSelector("#o-logged", function then(){
+	this.waitForSelector("#default_f_credential", function then(){
+		casper.echo("NEED LOGIN");
+		autologged = false;
+	}, function timeout(){
 		casper.echo("AUTO LOGGED");
 		autologged = true;
-	}, function timeout(){
-		casper.echo("NEED LOGIN");
 		//mouse.click('.btn-ident.o_r_identifier'); 
-	},10000);
+	},2000);
 	
 	
 });

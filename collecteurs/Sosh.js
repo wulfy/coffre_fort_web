@@ -11,7 +11,7 @@ casper.then(function openSoshFilesPage() {
 					this.click('input[id="9002210886"]');
 					this.click('.maf_valider_enabled');
 					casper.echo("contrat sosh selectionne");
-			},null,3000);
+			},null,2000);
 
 
 		if(debug)
