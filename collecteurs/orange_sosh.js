@@ -19,7 +19,7 @@ casper.echo("starting");
 casper.thenOpen(url, function openWebsite() {
 	//capture(collector,'start.png');
 
-	this.waitForSelector("#default_f_credential", function then(){
+	this.waitForSelector("#o-nav-item-login-container", function then(){
 		casper.echo("NEED LOGIN");
 		autologged = false;
 	}, function timeout(){
@@ -27,7 +27,7 @@ casper.thenOpen(url, function openWebsite() {
 		autologged = true;
 		//mouse.click('.btn-ident.o_r_identifier'); 
 	},2000);
-	
+	//capture(collector,'Orange_hp.png');
 	
 });
 
