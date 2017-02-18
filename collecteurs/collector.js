@@ -7,7 +7,7 @@
 
 var casper = require('casper').create({   
     verbose: true, 
-	logLevel: "warning",
+	logLevel: "debug",
     pageSettings: {
          loadImages:  true,         // The WebPage instance used by Casper will
          loadPlugins: true,        // use these settings
@@ -33,7 +33,7 @@ var casper = require('casper').create({
 
 
 
-var collectors = ['Aviva','Orange','Gdfsuez','Edf','Sosh'];
+var collectors = ['Aviva','Orange','Gdfsuez','Edf','Sosh','eau_grand_lyon'];
 //var baseFolder = '../docs';
 var baseFolder = '/data/docs';
 var fullPath = "";
