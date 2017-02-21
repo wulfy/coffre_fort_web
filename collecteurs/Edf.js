@@ -18,10 +18,13 @@ casper.thenOpen(urlConnect, function openWebsite() {
 		mylog("connexion");
 		capture(collector,'openform.png');
 		
-		this.fill(formSelect, {
+		/*this.fill(formSelect, {
 	        'login' :    login,
 			'motdepasse' : password,
-	    }, false);
+	    }, false);*/
+
+	    this.sendKeys('input[name=login]', login);
+	    this.sendKeys('input[name=motdepasse]', password);
 
 		capture(collector,'filled.png');
 

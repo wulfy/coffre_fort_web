@@ -46,6 +46,8 @@ this.echo("fillForm");
 			'password': password
 		}, false);
 		casper.echo("IN FORM FOUND ");
+
+		capture(collector,'Form.png');
 		//submit form
 		casper.then(function submitForm() {
 					this.click("input[value='s’identifier']");

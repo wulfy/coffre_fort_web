@@ -3,9 +3,9 @@ casper.echo("Orange.js");
 //select contract (sosh/internet)
 casper.then(function openFilesPage() {
 	capture(collector,'factures.png');
-		casper.waitForSelector('input[id="9037277644"]', function() {
-					this.click('input[id="9037277644"]');
-					this.click('.maf_valider_enabled');
+		casper.waitForSelector('.ec-panelAuthFrontMod-offerLabel', function() {
+					this.clickLabel('711168469', 'div');
+					//this.click('.maf_valider_enabled');
 					casper.echo("contrat Internet selectionne");
 			}, null, 3000);
 		this.wait(2000);
