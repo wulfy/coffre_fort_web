@@ -15,7 +15,7 @@ casper.thenOpen(urlFactures, function openWebsite() {
 	casper.waitForSelector("#loginButton", function() {
 		/*this.capture('1.png');*/
 		casper.echo("connexion");
-		capture(collector,'connexion.png');
+		
 		this.fill(formConnect, {
 	        'login' :    login,
 			'password' : password,
@@ -26,12 +26,13 @@ casper.thenOpen(urlFactures, function openWebsite() {
 
 });
 
-casper.wait(5000);
+casper.wait(2000);
 
 casper.thenOpen(urlFactures,function setTokenHeader(){
 
+	console.log("set token header");
+
 	this.currentResponse.headers.forEach(function(header){
-		console.log(header.name +  " => " + header.value + "<br/> \r\n")
 		var cookie = "";
 		var start = 0;
 		var stop = 0;
@@ -47,42 +48,30 @@ casper.thenOpen(urlFactures,function setTokenHeader(){
 	    
 	  });
 
-	console.log(token);
 	casper.page.customHeaders = {
 	        "X-Auth-Token": token
 	    };
 });
 
 casper.thenOpen(jsonFacturesUrl,function dlFactures() {
+    
+    casper.wait(2000);
 
-	/*this.open(jsonFactures, {
-        method: 'get',
-        headers: {
-            'token': token
-        }
-    });*/
+	var jsonFactures = JSON.parse(this.getPageContent());
+	var data = jsonFactures.data;
+	var url = "";
 
-
-    casper.wait(5000);
-capture(collector,'dlFactures.png');
-//console.log(this.getPageContent());
-var jsonFactures = JSON.parse(this.getPageContent());
-console.log("dump");
-//require('utils').dump(jsonFactures.data);
-var data = jsonFactures.data;
-
-var url = "";
+	console.log("downloading");
 
 	data.forEach(function(facture) {
       url = jsonFacturesUrl+'/'+ facture.znRefPublicDocElec + '?token='+encodeURIComponent(token);
-      console.log(folder+'/'+"Macif_"+facture.znAnnee+".pdf");
-      console.log(url);
+
       try{
-	  casper.download(url, folder+'/'+"Macif_"+facture.znAnnee+".pdf");
-	}catch(e)
-	{
-		require('utils').dump(e);
-	}
+	  		casper.download(url, folder+'/'+"Macif_"+facture.znAnnee+".pdf");
+		}catch(e)
+		{
+			require('utils').dump(e);
+		}
 
 	});
 
