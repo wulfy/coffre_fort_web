@@ -7,7 +7,7 @@
 
 var casper = require('casper').create({   
     verbose: true, 
-	logLevel: "debug",
+	logLevel: "error",
     pageSettings: {
          loadImages:  true,         // The WebPage instance used by Casper will
          loadPlugins: true,        // use these settings
