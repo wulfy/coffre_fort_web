@@ -1,3 +1,20 @@
-order deny,allow
-deny from all
-allow from 127.0.0.1
+#order deny,allow
+#deny from all
+#allow from 127.0.0.1
+RewriteEngine On
+RewriteBase /
+
+# Protect the htaccess file
+<Files .htaccess>
+Order Allow,Deny
+Deny from all
+</Files>
+
+#protect config
+<Files "config.json">
+Order Allow,Deny
+Deny from all
+</Files>
+
+# Disable directory browsing
+Options All -Indexes
